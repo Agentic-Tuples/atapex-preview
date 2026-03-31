@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AT Apex — The GM's Unfair Advantage in Industrial, Aerospace and Defense</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-deep:    #080c14;
+      --bg-card:    #0d1424;
+      --bg-panel:   #111927;
+      --border:     #1e2d47;
+      --border-lit: #2a4a6e;
+      --accent:     #3b82f6;
+      --accent-glow:#1d4ed8;
+      --accent2:    #f59e0b;
+      --success:    #10b981;
+      --warning:    #f59e0b;
+      --danger:     #ef4444;
+      --text:       #e2e8f0;
+      --text-muted: #64748b;
+      --text-dim:   #94a3b8;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-deep); color: var(--text); font-family: 'Inter', system-ui, sans-serif; line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,12,20,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+    .nav-logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), var(--accent-glow)); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.85rem; color: #fff; box-shadow: 0 0 16px rgba(59,130,246,0.4); }
+    .nav-logo-text { font-size: 1rem; font-weight: 700; }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-badge { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); color: var(--accent); border-radius: 4px; padding: 2px 8px; }
+    .nav-cta { background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 600; padding: 0.45rem 1.1rem; border-radius: 6px; transition: background 0.2s; }
+    .nav-cta:hover { background: #2563eb; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 140px 2rem 100px; position: relative; overflow: hidden; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(30,45,71,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(30,45,71,0.35) 1px, transparent 1px); background-size: 50px 50px; }
+    .hero-glow { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 700px; height: 350px; background: radial-gradient(ellipse, rgba(59,130,246,0.13) 0%, transparent 70%); pointer-events: none; }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border-lit); background: rgba(59,130,246,0.06); border-radius: 100px; padding: 0.4rem 1rem; font-size: 0.75rem; font-weight: 600; color: var(--text-dim); margin-bottom: 1.8rem; }
+    .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    .hero h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.4rem; }
+    .hero h1 .hl { background: linear-gradient(135deg, #60a5fa, #3b82f6, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.1rem; color: var(--text-dim); max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.75; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--accent); color: #fff; font-weight: 600; font-size: 0.9rem; padding: 0.8rem 1.8rem; border-radius: 8px; box-shadow: 0 0 24px rgba(59,130,246,0.3); transition: all 0.2s; }
+    .btn-primary:hover { background: #2563eb; box-shadow: 0 0 36px rgba(59,130,246,0.5); }
+    .btn-ghost { border: 1px solid var(--border-lit); color: var(--text-dim); font-weight: 600; font-size: 0.9rem; padding: 0.8rem 1.8rem; border-radius: 8px; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--text); }
+    .hero-scroll { margin-top: 3.5rem; color: var(--text-muted); font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .hero-scroll::before, .hero-scroll::after { content: ''; display: block; height: 1px; width: 40px; background: var(--border-lit); }
+
+    /* SECTION */
+    .section { padding: 100px 0; }
+    .section-sm { padding: 60px 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+    .label-amber { color: var(--accent2); }
+    .section-header { max-width: 620px; margin-bottom: 3.5rem; }
+    .section-header h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin: 0.7rem 0 1rem; }
+    .section-header p { color: var(--text-dim); font-size: 1rem; line-height: 1.7; }
+
+    /* PROBLEM */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 3rem; }
+    .problem-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.6rem; transition: border-color 0.2s; }
+    .problem-card:hover { border-color: var(--border-lit); }
+    .pcard-icon { width: 36px; height: 36px; border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .icon-red { background: rgba(239,68,68,0.12); color: #ef4444; }
+    .icon-amber { background: rgba(245,158,11,0.12); color: #f59e0b; }
+    .icon-blue { background: rgba(59,130,246,0.12); color: #3b82f6; }
+    .problem-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .problem-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
+
+    /* TAGLINE BREAK */
+    .tagline-break { text-align: center; padding: 80px 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .tagline-break blockquote { font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; max-width: 740px; margin: 0 auto; }
+    .tagline-break blockquote span { color: var(--accent); }
+    .tagline-break cite { display: block; margin-top: 1.2rem; font-size: 0.8rem; font-style: normal; color: var(--text-muted); letter-spacing: 0.05em; }
+
+    /* PILLARS */
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+    .pillar { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; position: relative; overflow: hidden; transition: border-color 0.2s; }
+    .pillar:hover { border-color: var(--border-lit); }
+    .pillar-num { font-size: 3.5rem; font-weight: 900; color: rgba(59,130,246,0.06); position: absolute; top: 0.3rem; right: 1rem; line-height: 1; pointer-events: none; }
+    .pillar-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .pillar h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .pillar p { font-size: 0.82rem; color: var(--text-dim); line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .hiw-steps { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .hiw-step { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem 1.6rem; }
+    .hiw-step:first-child { border-radius: 12px 0 0 12px; }
+    .hiw-step:last-child { border-radius: 0 12px 12px 0; }
+    .hiw-step + .hiw-step { border-left: none; }
+    .step-num { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
+    .step-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
+    .hiw-step h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .hiw-step p { font-size: 0.78rem; color: var(--text-dim); line-height: 1.65; }
+
+    /* BROWSER FRAME */
+    .browser-frame { background: #0a0f1a; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03); }
+    .browser-bar { background: #0d1220; border-bottom: 1px solid var(--border); padding: 0.7rem 1rem; display: flex; align-items: center; gap: 0.8rem; }
+    .browser-dots { display: flex; gap: 6px; }
+    .browser-dots span { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-red { background: #ef4444; } .dot-yellow { background: #f59e0b; } .dot-green { background: #10b981; }
+    .browser-url { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; padding: 0.3rem 0.8rem; font-size: 0.72rem; color: var(--text-muted); font-family: monospace; }
+
+    /* APP SHELL */
+    .app-shell { display: flex; height: 580px; font-size: 0.78rem; }
+    .app-sidebar { width: 200px; flex-shrink: 0; background: #090e1a; border-right: 1px solid var(--border); padding: 1.2rem 0; display: flex; flex-direction: column; }
+    .sidebar-brand { padding: 0 1.2rem 1.2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+    .sidebar-logo-mark { width: 24px; height: 24px; border-radius: 5px; background: linear-gradient(135deg, var(--accent), var(--accent-glow)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.65rem; color: #fff; }
+    .sidebar-brand-name { font-size: 0.8rem; font-weight: 700; }
+    .sidebar-brand-name span { color: var(--accent); }
+    .sidebar-nav { padding: 1rem 0; flex: 1; }
+    .sidebar-sec { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; color: var(--text-muted); padding: 0.5rem 1.2rem; text-transform: uppercase; }
+    .sidebar-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 1.2rem; color: var(--text-muted); border-left: 2px solid transparent; font-size: 0.75rem; }
+    .sidebar-item.active { color: var(--accent); background: rgba(59,130,246,0.08); border-left-color: var(--accent); }
+    .sidebar-item-icon { font-size: 0.85rem; width: 16px; text-align: center; }
+    .sidebar-user { padding: 0.8rem 1.2rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem; }
+    .user-avatar { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #1d4ed8); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .user-name { font-size: 0.72rem; font-weight: 600; }
+    .user-role { font-size: 0.62rem; color: var(--text-muted); }
+    .app-main { flex: 1; overflow-y: auto; background: var(--bg-deep); padding: 1.4rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    .app-main::-webkit-scrollbar { width: 4px; } .app-main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* TOPBAR */
+    .app-topbar { display: flex; align-items: center; justify-content: space-between; }
+    .topbar-left h2 { font-size: 1rem; font-weight: 700; }
+    .topbar-left p { font-size: 0.72rem; color: var(--text-muted); }
+    .topbar-right { display: flex; gap: 0.6rem; align-items: center; }
+    .badge { font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+    .badge-success { background: rgba(16,185,129,0.12); color: var(--success); border: 1px solid rgba(16,185,129,0.3); }
+    .badge-warning { background: rgba(245,158,11,0.12); color: var(--warning); border: 1px solid rgba(245,158,11,0.3); }
+    .badge-danger  { background: rgba(239,68,68,0.12); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
+
+    /* KPIs */
+    .kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.8rem; }
+    .kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem; }
+    .kpi-label { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    .kpi-value { font-size: 1.35rem; font-weight: 800; line-height: 1; }
+    .kpi-unit { font-size: 0.7rem; color: var(--text-muted); }
+    .kpi-delta { font-size: 0.62rem; margin-top: 0.3rem; }
+    .delta-up { color: var(--success); } .delta-down { color: var(--danger); }
+
+    /* ALERT */
+    .alert-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 8px; padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.8rem; }
+    .alert-text { flex: 1; }
+    .alert-text strong { font-size: 0.75rem; color: #fca5a5; display: block; margin-bottom: 0.2rem; }
+    .alert-text span { font-size: 0.68rem; color: var(--text-muted); }
+    .alert-btn { font-size: 0.65rem; font-weight: 600; padding: 4px 10px; background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); border-radius: 4px; white-space: nowrap; }
+
+    /* AGENT CARDS */
+    .agent-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.8rem; }
+    .agent-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem; }
+    .agent-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.6rem; }
+    .agent-name { font-size: 0.72rem; font-weight: 700; line-height: 1.3; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 2px; }
+    .dot-active { background: var(--success); box-shadow: 0 0 6px var(--success); animation: pulse 2s infinite; }
+    .dot-warning { background: var(--warning); box-shadow: 0 0 6px var(--warning); }
+    .dot-idle { background: var(--text-muted); }
+    .agent-insight { font-size: 0.7rem; color: var(--text-dim); line-height: 1.55; margin-bottom: 0.6rem; }
+    .agent-insight strong { color: var(--text); }
+    .agent-footer { display: flex; align-items: center; justify-content: space-between; }
+    .agent-time { font-size: 0.6rem; color: var(--text-muted); }
+    .agent-action { font-size: 0.62rem; font-weight: 600; color: var(--accent); }
+
+    /* DETAIL VIEW */
+    .app-shell-detail { height: 640px; }
+    .detail-main { flex: 1; overflow-y: auto; background: var(--bg-deep); padding: 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+    .detail-main::-webkit-scrollbar { width: 4px; } .detail-main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .detail-back { font-size: 0.72rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem; }
+    .detail-topbar { display: flex; align-items: center; justify-content: space-between; }
+    .briefing-header { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; }
+    .briefing-title-row { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.6rem; }
+    .briefing-title { font-size: 0.95rem; font-weight: 800; }
+    .briefing-meta { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .briefing-summary { font-size: 0.78rem; color: var(--text-dim); line-height: 1.65; border-top: 1px solid var(--border); padding-top: 0.8rem; margin-top: 0.8rem; }
+    .briefing-summary strong { color: var(--text); }
+    .findings { display: flex; flex-direction: column; gap: 0.6rem; }
+    .finding-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 0.85rem 1rem; display: flex; gap: 0.8rem; }
+    .finding-item.critical { border-left: 3px solid var(--danger); }
+    .finding-item.warning  { border-left: 3px solid var(--warning); }
+    .finding-item.ok       { border-left: 3px solid var(--success); }
+    .fbadge { font-size: 0.58rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .fbadge-crit { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+    .fbadge-warn { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+    .fbadge-ok   { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+    .finding-text { flex: 1; }
+    .finding-title { font-size: 0.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .finding-desc  { font-size: 0.68rem; color: var(--text-muted); line-height: 1.55; }
+    .actions-card { background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.18); border-radius: 10px; padding: 1rem 1.2rem; }
+    .actions-card h4 { font-size: 0.78rem; font-weight: 700; margin-bottom: 0.7rem; color: #93c5fd; }
+    .action-item { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.55rem; }
+    .action-num { width: 18px; height: 18px; border-radius: 50%; background: rgba(59,130,246,0.18); color: var(--accent); font-size: 0.6rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .action-text { font-size: 0.7rem; color: var(--text-dim); line-height: 1.55; }
+    .action-text strong { color: var(--text); }
+    .sources-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .source-chip { background: var(--bg-card); border: 1px solid var(--border); border-radius: 5px; padding: 4px 10px; font-size: 0.62rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem; }
+    .source-chip-icon { color: var(--accent); }
+    .micro-label { font-size: 0.62rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* CTA */
+    .cta-section { text-align: center; padding: 100px 2rem; position: relative; overflow: hidden; }
+    .cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 500px; height: 300px; background: radial-gradient(ellipse, rgba(59,130,246,0.1) 0%, transparent 70%); pointer-events: none; }
+    .cta-section h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 1rem; position: relative; }
+    .cta-section p { color: var(--text-dim); font-size: 1rem; max-width: 500px; margin: 0 auto 2rem; position: relative; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+    .cta-note { margin-top: 1.2rem; font-size: 0.75rem; color: var(--text-muted); position: relative; }
+    .cta-note a { color: var(--accent); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--text-muted); }
+    .footer-logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 0.85rem; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .kpi-row { grid-template-columns: repeat(2,1fr); }
+      .agent-grid { grid-template-columns: 1fr 1fr; }
+      .app-sidebar { display: none; }
+      .hiw-steps { grid-template-columns: 1fr 1fr; }
+      .hiw-step:nth-child(2) { border-radius: 0 12px 0 0; }
+      .hiw-step:nth-child(3) { border-left: 1px solid var(--border); border-top: none; border-radius: 0 0 0 12px; }
+      .hiw-step:nth-child(4) { border-left: none; border-top: none; border-radius: 0 0 12px 0; }
+    }
+    @media (max-width: 500px) {
+      .agent-grid { grid-template-columns: 1fr; }
+      .hiw-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">A</div>
+    <span class="nav-logo-text">AT <span>APEX</span></span>
+    <span class="nav-badge">Preview</span>
+  </div>
+  <a href="#early-access" class="nav-cta">Request Early Access</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Now in private preview · Industrial, Aerospace &amp; Defense
+    </div>
+    <h1>The <span class="hl">intelligence layer</span><br/>your ERP was never<br/>designed to be.</h1>
+    <p class="hero-sub">
+      Meet the agentic platform built for General Managers at industrial, aerospace and defense (A&amp;D) companies. Decisions ready. Every morning.
+    </p>
+    <div class="hero-actions">
+      <a href="#early-access" class="btn-primary">Request Early Access</a>
+      <a href="#sneak-peek" class="btn-ghost">See the Platform →</a>
+    </div>
+    <div class="hero-scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">The Problem</div>
+      <h2>The GM's and Ops Director's Dilemma</h2>
+      <p>You run production, finance, procurement, and compliance — often simultaneously. Your ERP captures transactions. It doesn't tell you what to do about them.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="pcard-icon icon-red">⚠️</div>
+        <h3>EDI changes hit at midnight</h3>
+        <p>A customer reschedules a delivery at 11pm. Nobody catches it until 9am. By then you've already committed the labor, tooling, and materials.</p>
+      </div>
+      <div class="problem-card">
+        <div class="pcard-icon icon-amber">📊</div>
+        <h3>Production Plan to achieve the Financial Forecast has changed again</h3>
+        <p>Your indirect rate crept 4 points over 6 weeks. No alert. No flag. You find out when the customer asks why the program is over budget.</p>
+      </div>
+      <div class="problem-card">
+        <div class="pcard-icon icon-blue">🔗</div>
+        <h3>Supplier signals go unread</h3>
+        <p>A key supplier has missed partial deliveries three weeks running. It's buried in PO acknowledgment emails. No one connected the pattern until it became a line-stop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAGLINE BREAK -->
+<div class="tagline-break">
+  <blockquote>"What would you have done with that information <span>at midnight</span> instead of 8am?"</blockquote>
+  <cite>— The question APEX answers every single day</cite>
+</div>
+
+<!-- PILLARS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">The Platform</div>
+      <h2>Built different.<br/>By design.</h2>
+      <p>APEX isn't another dashboard. It's an agentic layer that reads your operational data, reasons about it, and delivers decisions — not alerts.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar"><div class="pillar-num">1</div><div class="pillar-icon">🧠</div><h3>Intelligence Layer Above ERP</h3><p>APEX sits above your existing ERP — it doesn't replace it. It reads the documents and data you already have and makes them actionable.</p></div>
+      <div class="pillar"><div class="pillar-num">2</div><div class="pillar-icon">🎖️</div><h3>Built for the GM Who Wears Every Hat</h3><p>Designed for the General Manager of a 50–2,000 person industrial or A&amp;D company who is accountable for everything and has time for nothing.</p></div>
+      <div class="pillar"><div class="pillar-num">3</div><div class="pillar-icon">🏭</div><h3>Domain Expert AI — Not Generic AI</h3><p>APEX knows the difference between ETC and EAC. It understands CDRL cadence, FAR compliance, and what a late supplier PO acknowledgment actually means.</p></div>
+      <div class="pillar"><div class="pillar-num">4</div><div class="pillar-icon">⚡</div><h3>Agentic, Not Assistive</h3><p>Copilot assists. APEX acts. Your agents run overnight, ingest your data, surface findings, and hand you a decision-ready briefing by morning standup.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-sm">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">How It Works</div>
+      <h2>We don't need your ERP to be clean.</h2>
+      <p>APEX is document-first. PDFs, EDI flat files, reconciliation spreadsheets — the data you already have, in the formats it already exists in.</p>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step"><div class="step-num">Step 01</div><div class="step-icon">📁</div><h3>Connect Your Documents</h3><p>Drop in PDFs, EDI files, and spreadsheets. No ERP integration required. No IT project. No data cleaning sprint.</p></div>
+      <div class="hiw-step"><div class="step-num">Step 02</div><div class="step-icon">🤖</div><h3>Agents Run Overnight</h3><p>12 specialized agents work while you sleep — monitoring production, supply chain, and financial signals across your entire operation.</p></div>
+      <div class="hiw-step"><div class="step-num">Step 03</div><div class="step-icon">☀️</div><h3>Decisions Ready at 6AM</h3><p>You open APEX at morning standup to a Command Center briefing with ranked findings, root causes, and recommended actions.</p></div>
+      <div class="hiw-step"><div class="step-num">Step 04</div><div class="step-icon">✅</div><h3>Act, Don't React</h3><p>Approve recommendations, delegate actions, or dig deeper — all from one interface. Lead with clarity instead of catching up all day.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMAND CENTER MOCKUP -->
+<section class="section" id="sneak-peek">
+  <div class="container">
+    <div class="section-header">
+      <div class="label label-amber">Platform Preview</div>
+      <h2>The GM Command Center</h2>
+      <p>A first look at what APEX delivers every morning. Twelve agents. Three functional areas. One decision-ready view.</p>
+    </div>
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+        <div class="browser-url">app.atapex.io / command-center</div>
+      </div>
+      <div class="app-shell">
+        <div class="app-sidebar">
+          <div class="sidebar-brand">
+            <div class="sidebar-logo-mark">A</div>
+            <div class="sidebar-brand-name">AT <span>APEX</span></div>
+          </div>
+          <div class="sidebar-nav">
+            <div class="sidebar-sec">Operations</div>
+            <div class="sidebar-item active"><span class="sidebar-item-icon">⚡</span><span>Command Center</span></div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">🏭</span><span>Production</span></div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">🔗</span><span>Supply Chain</span></div>
+            <div class="sidebar-sec">Finance</div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">📊</span><span>Cost Management</span></div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">📋</span><span>ETC / EAC</span></div>
+            <div class="sidebar-sec">Settings</div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">⚙️</span><span>Agents</span></div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">📁</span><span>Data Sources</span></div>
+          </div>
+          <div class="sidebar-user">
+            <div class="user-avatar">JC</div>
+            <div><div class="user-name">J. Cañas</div><div class="user-role">General Manager</div></div>
+          </div>
+        </div>
+        <div class="app-main">
+          <div class="app-topbar">
+            <div class="topbar-left"><h2>Good morning, JC.</h2><p>Tuesday, March 31 · 3 agents require your attention</p></div>
+            <div class="topbar-right">
+              <span class="badge badge-danger">2 Critical</span>
+              <span class="badge badge-warning">4 Warnings</span>
+              <span class="badge badge-success">6 Clear</span>
+            </div>
+          </div>
+          <div class="alert-banner">
+            <span style="font-size:0.9rem">🚨</span>
+            <div class="alert-text">
+              <strong>EDI Change Detected — Customer #4421 (Northrop Grumman)</strong>
+              <span>Delivery rescheduled Apr 12 → Apr 5 on P/N 8847-A. Received 11:43 PM last night. Capacity impact: unresolved.</span>
+            </div>
+            <div class="alert-btn">Review Now</div>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-card"><div class="kpi-label">Schedule Compliance</div><div class="kpi-value">84<span class="kpi-unit">%</span></div><div class="kpi-delta delta-down">▼ 6% vs last week</div></div>
+            <div class="kpi-card"><div class="kpi-label">Supplier On-Time</div><div class="kpi-value">71<span class="kpi-unit">%</span></div><div class="kpi-delta delta-down">▼ 12% vs target</div></div>
+            <div class="kpi-card"><div class="kpi-label">Indirect Rate</div><div class="kpi-value">148<span class="kpi-unit">%</span></div><div class="kpi-delta delta-down">▲ 4.2pts — watch</div></div>
+            <div class="kpi-card"><div class="kpi-label">Active Agents</div><div class="kpi-value" style="color:var(--success)">12<span class="kpi-unit">/12</span></div><div class="kpi-delta" style="color:var(--success)">● All agents running</div></div>
+          </div>
+          <div class="micro-label">Tier 1 Agents · Overnight Run</div>
+          <div class="agent-grid">
+            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">Daily Production<br/>Briefing</div><div class="status-dot dot-active"></div></div><div class="agent-insight"><strong>P/N 8847-A behind 2 days.</strong> Root cause: tooling hold on Cell 3 since Monday. ETC slipping without intervention.</div><div class="agent-footer"><span class="agent-time">Ran 5:12 AM</span><span class="agent-action">View Briefing →</span></div></div>
+            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">Capacity vs.<br/>Demand Alert</div><div class="status-dot dot-warning"></div></div><div class="agent-insight"><strong>Apr 5–7 now over-capacity.</strong> Customer #4421 reschedule creates 22hr labor gap. Cell 2 available — replan needed.</div><div class="agent-footer"><span class="agent-time">Ran 5:14 AM</span><span class="agent-action">View Details →</span></div></div>
+            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">Supplier Delivery<br/>Monitor</div><div class="status-dot dot-warning"></div></div><div class="agent-insight"><strong>Acme Precision: 3 consecutive late partials.</strong> PO #7721 at risk. Pattern consistent with capacity issue at supplier.</div><div class="agent-footer"><span class="agent-time">Ran 5:09 AM</span><span class="agent-action">View Details →</span></div></div>
+            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">PO Change Pattern<br/>Detection</div><div class="status-dot dot-idle"></div></div><div class="agent-insight"><strong>No anomalies detected.</strong> 12 PO changes reviewed. All within normal variance thresholds for this customer set.</div><div class="agent-footer"><span class="agent-time">Ran 5:07 AM</span><span class="agent-action">View Log →</span></div></div>
+            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">Indirect Rate<br/>Monitor</div><div class="status-dot dot-warning"></div></div><div class="agent-insight"><strong>Rate at 148% — 4.2pts above plan.</strong> Driver: overtime variance in Q4 reconciliation. EAC impact: ~$31K on current programs.</div><div class="agent-footer"><span class="agent-time">Ran 5:18 AM</span><span class="agent-action">View Analysis →</span></div></div>
+            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">ETC / EAC<br/>Agent</div><div class="status-dot dot-idle"></div></div><div class="agent-insight"><strong>2 of 7 programs within 5% of ceiling.</strong> Program #P-1188 and #P-2204 need ceiling review before month-end.</div><div class="agent-footer"><span class="agent-time">Ran 5:21 AM</span><span class="agent-action">View Programs →</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT DETAIL -->
+<section class="section-sm">
+  <div class="container">
+    <div class="section-header">
+      <div class="label label-amber">Platform Preview</div>
+      <h2>Agent Detail View</h2>
+      <p>Drill into any agent for the full AI-generated briefing — findings ranked by severity, root causes, and recommended actions ready to act on.</p>
+    </div>
+    <div class="browser-frame">
+      <div class="browser-bar">
+        <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+        <div class="browser-url">app.atapex.io / agents / daily-production-briefing</div>
+      </div>
+      <div class="app-shell app-shell-detail">
+        <div class="app-sidebar">
+          <div class="sidebar-brand">
+            <div class="sidebar-logo-mark">A</div>
+            <div class="sidebar-brand-name">AT <span>APEX</span></div>
+          </div>
+          <div class="sidebar-nav">
+            <div class="sidebar-sec">Operations</div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">⚡</span><span>Command Center</span></div>
+            <div class="sidebar-item active"><span class="sidebar-item-icon">🏭</span><span>Production</span></div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">🔗</span><span>Supply Chain</span></div>
+            <div class="sidebar-sec">Finance</div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">📊</span><span>Cost Management</span></div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">📋</span><span>ETC / EAC</span></div>
+            <div class="sidebar-sec">Settings</div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">⚙️</span><span>Agents</span></div>
+            <div class="sidebar-item"><span class="sidebar-item-icon">📁</span><span>Data Sources</span></div>
+          </div>
+          <div class="sidebar-user">
+            <div class="user-avatar">JC</div>
+            <div><div class="user-name">J. Cañas</div><div class="user-role">General Manager</div></div>
+          </div>
+        </div>
+        <div class="detail-main">
+          <div class="detail-topbar">
+            <div class="detail-back">← Command Center</div>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <span class="badge badge-success">Agent Active</span>
+              <span style="font-size:0.65rem;color:var(--text-muted)">Last run: 5:12 AM today</span>
+            </div>
+          </div>
+          <div class="briefing-header">
+            <div class="briefing-title-row">
+              <div><div class="briefing-title">Daily Production Briefing</div><div class="briefing-meta">Tuesday, March 31 · Generated 5:12 AM · 4 documents analyzed</div></div>
+              <span class="badge badge-warning">2 Issues Found</span>
+            </div>
+            <div class="briefing-summary"><strong>Executive Summary:</strong> Shop floor is running behind on P/N 8847-A due to a tooling hold on Cell 3 that began Monday morning. The hold was not escalated through normal channels and was discovered by the agent via the daily labor routing report. Combined with the overnight EDI reschedule from Customer #4421, the week of Apr 5 is now at risk. <strong>Immediate action is needed on Cell 3 tooling status and capacity replan for Apr 5–7.</strong></div>
+          </div>
+          <div class="micro-label">Findings · Ranked by Severity</div>
+          <div class="findings">
+            <div class="finding-item critical"><div class="fbadge fbadge-crit">Critical</div><div class="finding-text"><div class="finding-title">P/N 8847-A — 2-Day Schedule Slip</div><div class="finding-desc">Cell 3 tooling hold since Monday has resulted in 2 lost production days. Delivery to Customer #4421 was Apr 12 before last night's reschedule to Apr 5. Current ETC does not support the new due date without Cell 2 replan or overtime authorization.</div></div></div>
+            <div class="finding-item warning"><div class="fbadge fbadge-warn">Warning</div><div class="finding-text"><div class="finding-title">Cell 3 Tooling Hold — No Escalation on Record</div><div class="finding-desc">The tooling hold was identified in the labor routing report but does not appear in the daily exception log. Root cause and expected resolution date are unknown as of 5:12 AM.</div></div></div>
+            <div class="finding-item ok"><div class="fbadge fbadge-ok">Clear</div><div class="finding-text"><div class="finding-title">Cells 1, 2, 4, 5 — On Schedule</div><div class="finding-desc">All other production cells are running within normal variance. No flags detected in yesterday's labor actuals or today's routing schedule.</div></div></div>
+          </div>
+          <div class="actions-card">
+            <h4>⚡ APEX Recommended Actions</h4>
+            <div class="action-item"><div class="action-num">1</div><div class="action-text"><strong>Confirm Cell 3 tooling status</strong> with Production Supervisor before standup. Get resolution date and determine if it impacts the 8847-A routing path.</div></div>
+            <div class="action-item"><div class="action-num">2</div><div class="action-text"><strong>Authorize Cell 2 capacity replan</strong> for Apr 5–7 to absorb Customer #4421 schedule pull-in. APEX estimates 22 hours of available capacity on Cell 2.</div></div>
+            <div class="action-item"><div class="action-num">3</div><div class="action-text"><strong>Notify Customer #4421 program manager</strong> by EOD today if Cell 3 resolution is not confirmed by noon. Early communication preserves relationship and CDRL standing.</div></div>
+          </div>
+          <div>
+            <div class="micro-label" style="margin-bottom:0.5rem">Data Sources Analyzed</div>
+            <div class="sources-row">
+              <div class="source-chip"><span class="source-chip-icon">📄</span>Labor_Routing_03-31.pdf</div>
+              <div class="source-chip"><span class="source-chip-icon">📄</span>Daily_Exception_Log.xlsx</div>
+              <div class="source-chip"><span class="source-chip-icon">📄</span>EDI_855_Customer4421.edi</div>
+              <div class="source-chip"><span class="source-chip-icon">📄</span>Production_Schedule_WK14.pdf</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="early-access">
+  <div class="cta-glow"></div>
+  <div class="label" style="margin-bottom:1rem">Early Access</div>
+  <h2>Be among the first GMs<br/>to run APEX.</h2>
+  <p>We're working with a select group of industrial and A&amp;D companies for our pilot program. If you're a GM or Ops Director responsible for a shop floor and a P&amp;L, we want to talk.</p>
+  <div class="cta-actions">
+    <a href="mailto:joshua@agentictuples.com" class="btn-primary">Request Early Access</a>
+    <a href="mailto:joshua@agentictuples.com" class="btn-ghost">Schedule a Conversation</a>
+  </div>
+  <div class="cta-note">POC shipping September 2026 · Austin, TX · <a href="mailto:joshua@agentictuples.com">joshua@agentictuples.com</a></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="nav-logo-mark" style="width:24px;height:24px;font-size:0.7rem">A</div>
+    Agentic Tuples · <span>APEX</span>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:joshua@agentictuples.com">Contact</a>
+    <a href="#sneak-peek">Platform Preview</a>
+    <a href="#early-access">Early Access</a>
+  </div>
+  <div>© 2026 Agentic Tuples LLC. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
