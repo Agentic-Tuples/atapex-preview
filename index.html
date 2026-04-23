@@ -230,6 +230,7 @@
       .agent-grid { grid-template-columns: 1fr 1fr; }
       .app-sidebar { display: none; }
       .hiw-steps { grid-template-columns: 1fr 1fr; }
+      .screenshot-grid { grid-template-columns: 1fr !important; }
       .hiw-step:nth-child(2) { border-radius: 0 12px 0 0; }
       .hiw-step:nth-child(3) { border-left: 1px solid var(--border); border-top: none; border-radius: 0 0 0 12px; }
       .hiw-step:nth-child(4) { border-left: none; border-top: none; border-radius: 0 0 12px 0; }
@@ -268,6 +269,7 @@
     <div class="hero-actions">
       <a href="#early-access" class="btn-primary">Request Early Access</a>
       <a href="#sneak-peek" class="btn-ghost">See the Platform →</a>
+      <a href="https://www.loom.com/share/bbad66f8131a48118a88ab7380583d59" target="_blank" rel="noopener" class="btn-ghost">▶ Watch Demo</a>
     </div>
     <div class="hero-scroll">Scroll to explore</div>
   </div>
@@ -352,65 +354,9 @@
     <div class="browser-frame">
       <div class="browser-bar">
         <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-        <div class="browser-url">app.atapex.io / command-center</div>
+        <div class="browser-url">at-apex-poc.onrender.com / command-center</div>
       </div>
-      <div class="app-shell">
-        <div class="app-sidebar">
-          <div class="sidebar-brand">
-            <div class="sidebar-logo-mark">A</div>
-            <div class="sidebar-brand-name">AT <span>APEX</span></div>
-          </div>
-          <div class="sidebar-nav">
-            <div class="sidebar-sec">Operations</div>
-            <div class="sidebar-item active"><span class="sidebar-item-icon">⚡</span><span>Command Center</span></div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">🏭</span><span>Production</span></div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">🔗</span><span>Supply Chain</span></div>
-            <div class="sidebar-sec">Finance</div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">📊</span><span>Cost Management</span></div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">📋</span><span>ETC / EAC</span></div>
-            <div class="sidebar-sec">Settings</div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">⚙️</span><span>Agents</span></div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">📁</span><span>Data Sources</span></div>
-          </div>
-          <div class="sidebar-user">
-            <div class="user-avatar">JC</div>
-            <div><div class="user-name">J. Cañas</div><div class="user-role">General Manager</div></div>
-          </div>
-        </div>
-        <div class="app-main">
-          <div class="app-topbar">
-            <div class="topbar-left"><h2>Good morning, JC.</h2><p>Tuesday, March 31 · 3 agents require your attention</p></div>
-            <div class="topbar-right">
-              <span class="badge badge-danger">2 Critical</span>
-              <span class="badge badge-warning">4 Warnings</span>
-              <span class="badge badge-success">6 Clear</span>
-            </div>
-          </div>
-          <div class="alert-banner">
-            <span style="font-size:0.9rem">🚨</span>
-            <div class="alert-text">
-              <strong>EDI Change Detected — Customer #4421 (Northrop Grumman)</strong>
-              <span>Delivery rescheduled Apr 12 → Apr 5 on P/N 8847-A. Received 11:43 PM last night. Capacity impact: unresolved.</span>
-            </div>
-            <div class="alert-btn">Review Now</div>
-          </div>
-          <div class="kpi-row">
-            <div class="kpi-card"><div class="kpi-label">Schedule Compliance</div><div class="kpi-value">84<span class="kpi-unit">%</span></div><div class="kpi-delta delta-down">▼ 6% vs last week</div></div>
-            <div class="kpi-card"><div class="kpi-label">Supplier On-Time</div><div class="kpi-value">71<span class="kpi-unit">%</span></div><div class="kpi-delta delta-down">▼ 12% vs target</div></div>
-            <div class="kpi-card"><div class="kpi-label">Indirect Rate</div><div class="kpi-value">148<span class="kpi-unit">%</span></div><div class="kpi-delta delta-down">▲ 4.2pts — watch</div></div>
-            <div class="kpi-card"><div class="kpi-label">Active Agents</div><div class="kpi-value" style="color:var(--success)">12<span class="kpi-unit">/12</span></div><div class="kpi-delta" style="color:var(--success)">● All agents running</div></div>
-          </div>
-          <div class="micro-label">Tier 1 Agents · Overnight Run</div>
-          <div class="agent-grid">
-            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">Daily Production<br/>Briefing</div><div class="status-dot dot-active"></div></div><div class="agent-insight"><strong>P/N 8847-A behind 2 days.</strong> Root cause: tooling hold on Cell 3 since Monday. ETC slipping without intervention.</div><div class="agent-footer"><span class="agent-time">Ran 5:12 AM</span><span class="agent-action">View Briefing →</span></div></div>
-            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">Capacity vs.<br/>Demand Alert</div><div class="status-dot dot-warning"></div></div><div class="agent-insight"><strong>Apr 5–7 now over-capacity.</strong> Customer #4421 reschedule creates 22hr labor gap. Cell 2 available — replan needed.</div><div class="agent-footer"><span class="agent-time">Ran 5:14 AM</span><span class="agent-action">View Details →</span></div></div>
-            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">Supplier Delivery<br/>Monitor</div><div class="status-dot dot-warning"></div></div><div class="agent-insight"><strong>Acme Precision: 3 consecutive late partials.</strong> PO #7721 at risk. Pattern consistent with capacity issue at supplier.</div><div class="agent-footer"><span class="agent-time">Ran 5:09 AM</span><span class="agent-action">View Details →</span></div></div>
-            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">PO Change Pattern<br/>Detection</div><div class="status-dot dot-idle"></div></div><div class="agent-insight"><strong>No anomalies detected.</strong> 12 PO changes reviewed. All within normal variance thresholds for this customer set.</div><div class="agent-footer"><span class="agent-time">Ran 5:07 AM</span><span class="agent-action">View Log →</span></div></div>
-            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">Indirect Rate<br/>Monitor</div><div class="status-dot dot-warning"></div></div><div class="agent-insight"><strong>Rate at 148% — 4.2pts above plan.</strong> Driver: overtime variance in Q4 reconciliation. EAC impact: ~$31K on current programs.</div><div class="agent-footer"><span class="agent-time">Ran 5:18 AM</span><span class="agent-action">View Analysis →</span></div></div>
-            <div class="agent-card"><div class="agent-card-header"><div class="agent-name">ETC / EAC<br/>Agent</div><div class="status-dot dot-idle"></div></div><div class="agent-insight"><strong>2 of 7 programs within 5% of ceiling.</strong> Program #P-1188 and #P-2204 need ceiling review before month-end.</div><div class="agent-footer"><span class="agent-time">Ran 5:21 AM</span><span class="agent-action">View Programs →</span></div></div>
-          </div>
-        </div>
-      </div>
+      <img src="screenshot_dashboard.png" alt="AT Apex GM Command Center Dashboard" style="width:100%;display:block;border-radius:0 0 14px 14px;" />
     </div>
   </div>
 </section>
@@ -421,72 +367,27 @@
     <div class="section-header">
       <div class="label label-amber">Platform Preview</div>
       <h2>Agent Detail View</h2>
-      <p>Drill into any agent for the full AI-generated briefing — findings ranked by severity, root causes, and recommended actions ready to act on.</p>
+      <p>Drill into any agent for the full AI-generated decision package — LTA compliance findings, supplier risk signals, and SIOP demand analysis, all synthesized before you decide.</p>
     </div>
-    <div class="browser-frame">
-      <div class="browser-bar">
-        <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
-        <div class="browser-url">app.atapex.io / agents / daily-production-briefing</div>
-      </div>
-      <div class="app-shell app-shell-detail">
-        <div class="app-sidebar">
-          <div class="sidebar-brand">
-            <div class="sidebar-logo-mark">A</div>
-            <div class="sidebar-brand-name">AT <span>APEX</span></div>
+    <div class="screenshot-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+      <div>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">LTA Violation — PO Decision Package</p>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+            <div class="browser-url">at-apex-poc.onrender.com / result</div>
           </div>
-          <div class="sidebar-nav">
-            <div class="sidebar-sec">Operations</div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">⚡</span><span>Command Center</span></div>
-            <div class="sidebar-item active"><span class="sidebar-item-icon">🏭</span><span>Production</span></div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">🔗</span><span>Supply Chain</span></div>
-            <div class="sidebar-sec">Finance</div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">📊</span><span>Cost Management</span></div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">📋</span><span>ETC / EAC</span></div>
-            <div class="sidebar-sec">Settings</div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">⚙️</span><span>Agents</span></div>
-            <div class="sidebar-item"><span class="sidebar-item-icon">📁</span><span>Data Sources</span></div>
-          </div>
-          <div class="sidebar-user">
-            <div class="user-avatar">JC</div>
-            <div><div class="user-name">J. Cañas</div><div class="user-role">General Manager</div></div>
-          </div>
+          <img src="screenshot_po_decision.png" alt="PO Decision Package — GM Decision Required" style="width:100%;display:block;border-radius:0 0 14px 14px;" />
         </div>
-        <div class="detail-main">
-          <div class="detail-topbar">
-            <div class="detail-back">← Command Center</div>
-            <div style="display:flex;gap:0.5rem;align-items:center;">
-              <span class="badge badge-success">Agent Active</span>
-              <span style="font-size:0.65rem;color:var(--text-muted)">Last run: 5:12 AM today</span>
-            </div>
+      </div>
+      <div>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">SIOP Bullwhip Detection — GE Aerospace / Boeing 737 MAX</p>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+            <div class="browser-url">at-apex-poc.onrender.com / siop / result</div>
           </div>
-          <div class="briefing-header">
-            <div class="briefing-title-row">
-              <div><div class="briefing-title">Daily Production Briefing</div><div class="briefing-meta">Tuesday, March 31 · Generated 5:12 AM · 4 documents analyzed</div></div>
-              <span class="badge badge-warning">2 Issues Found</span>
-            </div>
-            <div class="briefing-summary"><strong>Executive Summary:</strong> Shop floor is running behind on P/N 8847-A due to a tooling hold on Cell 3 that began Monday morning. The hold was not escalated through normal channels and was discovered by the agent via the daily labor routing report. Combined with the overnight EDI reschedule from Customer #4421, the week of Apr 5 is now at risk. <strong>Immediate action is needed on Cell 3 tooling status and capacity replan for Apr 5–7.</strong></div>
-          </div>
-          <div class="micro-label">Findings · Ranked by Severity</div>
-          <div class="findings">
-            <div class="finding-item critical"><div class="fbadge fbadge-crit">Critical</div><div class="finding-text"><div class="finding-title">P/N 8847-A — 2-Day Schedule Slip</div><div class="finding-desc">Cell 3 tooling hold since Monday has resulted in 2 lost production days. Delivery to Customer #4421 was Apr 12 before last night's reschedule to Apr 5. Current ETC does not support the new due date without Cell 2 replan or overtime authorization.</div></div></div>
-            <div class="finding-item warning"><div class="fbadge fbadge-warn">Warning</div><div class="finding-text"><div class="finding-title">Cell 3 Tooling Hold — No Escalation on Record</div><div class="finding-desc">The tooling hold was identified in the labor routing report but does not appear in the daily exception log. Root cause and expected resolution date are unknown as of 5:12 AM.</div></div></div>
-            <div class="finding-item ok"><div class="fbadge fbadge-ok">Clear</div><div class="finding-text"><div class="finding-title">Cells 1, 2, 4, 5 — On Schedule</div><div class="finding-desc">All other production cells are running within normal variance. No flags detected in yesterday's labor actuals or today's routing schedule.</div></div></div>
-          </div>
-          <div class="actions-card">
-            <h4>⚡ APEX Recommended Actions</h4>
-            <div class="action-item"><div class="action-num">1</div><div class="action-text"><strong>Confirm Cell 3 tooling status</strong> with Production Supervisor before standup. Get resolution date and determine if it impacts the 8847-A routing path.</div></div>
-            <div class="action-item"><div class="action-num">2</div><div class="action-text"><strong>Authorize Cell 2 capacity replan</strong> for Apr 5–7 to absorb Customer #4421 schedule pull-in. APEX estimates 22 hours of available capacity on Cell 2.</div></div>
-            <div class="action-item"><div class="action-num">3</div><div class="action-text"><strong>Notify Customer #4421 program manager</strong> by EOD today if Cell 3 resolution is not confirmed by noon. Early communication preserves relationship and CDRL standing.</div></div>
-          </div>
-          <div>
-            <div class="micro-label" style="margin-bottom:0.5rem">Data Sources Analyzed</div>
-            <div class="sources-row">
-              <div class="source-chip"><span class="source-chip-icon">📄</span>Labor_Routing_03-31.pdf</div>
-              <div class="source-chip"><span class="source-chip-icon">📄</span>Daily_Exception_Log.xlsx</div>
-              <div class="source-chip"><span class="source-chip-icon">📄</span>EDI_855_Customer4421.edi</div>
-              <div class="source-chip"><span class="source-chip-icon">📄</span>Production_Schedule_WK14.pdf</div>
-            </div>
-          </div>
+          <img src="screenshot_siop.png" alt="SIOP Bullwhip Analysis Result" style="width:100%;display:block;border-radius:0 0 14px 14px;" />
         </div>
       </div>
     </div>
@@ -501,6 +402,7 @@
   <p>We're working with a select group of industrial and A&amp;D companies for our pilot program. If you're a GM or Ops Director responsible for a shop floor and a P&amp;L, we want to talk.</p>
   <div class="cta-actions">
     <a href="mailto:joshua@agentictuples.com" class="btn-primary">Request Early Access</a>
+    <a href="https://www.loom.com/share/bbad66f8131a48118a88ab7380583d59" target="_blank" rel="noopener" class="btn-ghost">▶ Watch Demo</a>
     <a href="mailto:joshua@agentictuples.com" class="btn-ghost">Schedule a Conversation</a>
   </div>
   <div class="cta-note">POC shipping September 2026 · Austin, TX · <a href="mailto:joshua@agentictuples.com">joshua@agentictuples.com</a></div>
